@@ -26,7 +26,7 @@ var level = -1;
 
 var score = 0;
 
-var availablelevels = -1, blackscreen;
+var availablelevels = -1;
 
 function preload(){
     //background
@@ -74,10 +74,6 @@ function preload(){
 function setup(){
     //Canvas
     createCanvas(windowWidth, windowHeight);
-
-    blackscreen = createSprite(width/2, height/2, width, height);
-    blackscreen.shapeColor = "black";
-    blackscreen.visible = false;
 
     var girlImg = createImg('./menina/idle/menina-idle-right.png');
     girlImg.position(width - width - width - width, height - height - height - height);
@@ -177,8 +173,7 @@ function setup(){
 function draw(){
     if(level > availablelevels){
         background("black");
-        if(blackscreen.visible == false){
-           //blackscreen.visible = true;
+        if(girl.visible == true){
            placar.visible = false;
            girl.visible = false;
            tocha.visible = false;
