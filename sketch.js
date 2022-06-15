@@ -22,9 +22,11 @@ var left = true, right = false;
 var houseImg, foresthousebgImg, butterfliesbgImg, treeandrockbgImg, temploImg, florestaencantadabg, 
 templeBricksImg, tocha;
 
-var level = -5;
+var level = -1;
 
 var score = 0;
+
+var availablelevels = -1, blackscreen;
 
 function preload(){
     //background
@@ -72,6 +74,10 @@ function preload(){
 function setup(){
     //Canvas
     createCanvas(windowWidth, windowHeight);
+
+    blackscreen = createSprite(width/2, height/2, width, height);
+    blackscreen.shapeColor = "black";
+    blackscreen.visible = false;
 
     var girlImg = createImg('./menina/idle/menina-idle-right.png');
     girlImg.position(width - width - width - width, height - height - height - height);
@@ -169,6 +175,22 @@ function setup(){
 }
 
 function draw(){
+    if(level > availablelevels){
+        background("black");
+        if(blackscreen.visible == false){
+           //blackscreen.visible = true;
+           placar.visible = false;
+           girl.visible = false;
+           tocha.visible = false;
+        }
+        push();
+        textAlign("center");
+        textSize(35);
+        fill('cyan');
+        stroke('green');
+        text("Continua...", width/2, height/2);
+        pop();
+    }
     //Progamações Condicionais para cada level.
     if(level == -5){
         background(foresthousebgImg);
@@ -195,9 +217,9 @@ function draw(){
         
         girl.collide(rockG);
         //girl.collide(borboleta);
-        girl.collide(edges[1]);
-        girl.collide(edges[2]);
-        girl.collide(edges[3]);
+        girl.collide(edges[1]);//Right
+        girl.collide(edges[2]);//Up
+        girl.collide(edges[3]);//Down
         if(borboleta.visible == false){
             borboleta.visible = true;
         }
@@ -268,7 +290,7 @@ function draw(){
         }
     }
 
-    if(level > -4 || level == -4 && dialogostatus == "Terminado"){
+    if(level > -4 && level <= availablelevels|| level == -4 && dialogostatus == "Terminado"){
         textSize(55);
         fill("cyan");
         stroke("white");
@@ -276,7 +298,7 @@ function draw(){
         placar.visible = true;
     }
 
-    if(level > -1){
+    if(level > -1 && level <= availablelevels){
         background(templeBricksImg);
         image(tocha, width/2, height/2, 105, 105);
     }
