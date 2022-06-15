@@ -22,7 +22,7 @@ var left = true, right = false;
 var houseImg, foresthousebgImg, butterfliesbgImg, treeandrockbgImg, temploImg, florestaencantadabg, 
 templeBricksImg, tocha;
 
-var level = -1;
+var level = -5;
 
 var score = 0;
 
