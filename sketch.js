@@ -201,15 +201,6 @@ function draw(){
     }
 
     if(level == -4){
-        if(dialogostatus == "Terminado"){
-            if(girl.x > borboleta.x){
-                borboleta.changeImage("right", borboletaimgright);
-            }
-            if(girl.x < borboleta.x){
-                borboleta.changeImage("left", borboletaimgleft);
-            }
-        }
-        
         background(treeandrockbgImg);
         fill("cyan");
         stroke("white");
@@ -308,6 +299,15 @@ function draw(){
     if(level > -1 && level <= availablelevels){
         background(templeBricksImg);
         image(tocha, width/2, height/2, 105, 105);
+    }
+
+    if(dialogostatus == "Terminado" && level == -4){
+        if(girl.x > borboleta.x){
+            borboleta.changeImage("right", borboletaimgright);
+        }
+        if(girl.x < borboleta.x){
+            borboleta.changeImage("left", borboletaimgleft);
+        }
     }
 
     //Para quando a menina tocar numa borboleta PEGÁVEL: a borboleta se destroi e aumenta a pontuação em 1.
