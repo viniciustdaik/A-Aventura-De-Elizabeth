@@ -30,14 +30,14 @@ var availablelevels = -1;
 
 function preload(){
     //background
-    houseImg = loadImage("./backgrounds/house.png");
+    houseImg = loadImage("./backgrounds/assets/house.png");
     foresthousebgImg = loadImage("./backgrounds/forestbghouse.png");
     butterfliesbgImg = loadImage("./backgrounds/fundoborboleta.jpg");
     treeandrockbgImg = loadImage("./backgrounds/treeandrockbg.png");
-    temploImg = loadImage("./backgrounds/templo.png");
+    temploImg = loadImage("./backgrounds/assets/templo.png");
     florestaencantadabg = loadImage("./backgrounds/florestaencantadabackground.png");
     templeBricksImg = loadImage("./backgrounds/templebricks.png");
-    tocha = loadImage("./backgrounds/tochas/tocha1.png");
+    tocha = loadImage("./backgrounds/assets/tochas/tocha1.png");
 
     //girl anms
     girlidleleftanm = loadAnimation("./menina/idle/menina-idle-left.png", 
