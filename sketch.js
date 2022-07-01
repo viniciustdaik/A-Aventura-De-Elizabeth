@@ -373,11 +373,11 @@ function draw(){
                     dialogo = 2;
                     dialogued = true;
                 }
-                setTimeout(() => {
+                /*setTimeout(() => {
                     if(dialogued == true && dialogo == 1 && level == -4){
                         dialogued = false;
                     }
-                }, 1500);
+                }, 1500);*/
             }
             
             if(dialogo == 2){
@@ -388,11 +388,11 @@ function draw(){
                     dialogued = true;
                 }
 
-                setTimeout(() => {
+                /*setTimeout(() => {
                     if(dialogued == true && dialogo == 2 && level == -4){
                         dialogued = false;
                     }
-                }, 1500);
+                }, 1500);*/
             }
 
             
@@ -405,13 +405,18 @@ function draw(){
                     dialogued = true;
                     dialogostatus = "Terminado";
                 }
-                setTimeout(() => {
+                /*setTimeout(() => {
                     if(dialogued == true && dialogo == 3 && level == -4){
                         dialogued = false;
                     }
-                }, 1500);
+                }, 1500);*/
                 pop();
             }
+            setTimeout(() => {
+                if(dialogued == true){
+                    dialogued = false;
+                }
+            }, 1500);
             pop();
         }
         
