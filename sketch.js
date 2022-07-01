@@ -11,7 +11,7 @@ var borboleta, borboletaimgright;
 var borboletaverdeimg, borboletaamarelomarromimg, borboletamarromimg, borboletaazulimg, 
 butterflyG;
 
-var dialogo = 0, dialogostatus = "Nenhum";
+var dialogo = 0, dialogostatus = "Nenhum", dialogued = true;
 
 var edges, invisibleGround, tree, rock, rockG;
 
@@ -206,7 +206,7 @@ function draw(){
             text("Objetivo: Falar Com A Borboleta", 10, 45);
         }
 
-        if(dialogostatus == "Terminado" && level == -4){
+        if(dialogostatus == "Terminado"){
             text("Objetivo: Continuar", 10, 45);
         }
         
@@ -319,6 +319,8 @@ function draw(){
         
         dialogo = 1;
         dialogostatus = "Falando";
+        dialogued = true;
+        
 
     }else if(girl.x < borboleta.x && level == -4 && dialogostatus == "Não Terminado"
     ||girl.x < borboleta.x && level == -4 && dialogostatus == "Falando"){
@@ -338,35 +340,81 @@ function draw(){
     }
 
     if(dialogo !== 0){
+        if(dialogued == false){
+            push();
+            textAlign("center");
+            textSize(55);
+            fill("white");
+            stroke("black");
+            textSize(18);
+            if(dialogo == 3 && level == -4){
+                text("Pressione Esc para sair.", width / 2, 85);
+
+            }
+            else{
+                
+                text("Pressione E para continuar.", width / 2, 85);
+                
+            }
+            pop();
+        }
         textAlign("center");
         textSize(55);
         fill("#4169E1");//blue
         stroke("lightblue");
-        if(dialogo == 1){
-            //textSize(55);
-            //fill("lightblue");
-            text("Olá! Preciso da sua ajuda!", width / 2, 45);
-            if(keyWentDown("1")){
-                dialogo = 2;
+        if(level == -4){
+            push();
+            if(dialogo == 1){
+                
+                //textSize(55);
+                //fill("lightblue");
+                text("Olá! Preciso da sua ajuda!", width / 2, 45);
+                if(keyWentDown("E") && dialogued == false){
+                    dialogo = 2;
+                    dialogued = true;
+                }
+                setTimeout(() => {
+                    if(dialogued == true && dialogo == 1 && level == -4){
+                        dialogued = false;
+                    }
+                }, 1500);
             }
+            
+            if(dialogo == 2){
+                
+                text("Minhas amigas desapareceram! Você pode me ajudar?", width / 2, 45);
+                if(keyWentDown("E") && dialogued == false){
+                    dialogo = 3;
+                    dialogued = true;
+                }
+
+                setTimeout(() => {
+                    if(dialogued == true && dialogo == 2 && level == -4){
+                        dialogued = false;
+                    }
+                }, 1500);
+            }
+
+            
+            if(dialogo == 3){
+                push();
+                fill("pink");
+                text("Sim, Vou te ajudar!", width / 2, 45);
+                if(keyWentDown("esc") && dialogued == false){
+                    dialogo = 0;
+                    dialogued = true;
+                    dialogostatus = "Terminado";
+                }
+                setTimeout(() => {
+                    if(dialogued == true && dialogo == 3 && level == -4){
+                        dialogued = false;
+                    }
+                }, 1500);
+                pop();
+            }
+            pop();
         }
         
-        if(dialogo == 2){
-            
-            text("Minhas amigas desapareceram! Você pode me ajudar?", width / 2, 45);
-            if(keyWentDown("2")){
-                dialogo = 3;
-            }
-        }
-
-        fill("pink");
-        if(dialogo == 3){
-            text("Sim, Vou te ajudar!", width / 2, 45);
-            if(keyWentDown("esc")){
-                dialogo = 0;
-                dialogostatus = "Terminado";
-            }
-        }
     }
 
     //Se uma dessas teclas for pressionada, E a velocidade Y da menina for 0, E o dialogo(variável) for 0, E
