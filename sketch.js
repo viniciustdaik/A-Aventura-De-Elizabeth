@@ -6,7 +6,7 @@ girlpousoleftanm, girlpousorightanm,
 girlrunningleftanm, girlrunningrightanm, 
 girlIsJumping = false, girlIsRastera = false, girlIsRunning = false, girlanmrunning = false;
 
-var borboleta, borboletaimgright;
+var borboleta, borboletaimgright, borboletaimgleft;
 
 var borboletaverdeimg, borboletaamarelomarromimg, borboletamarromimg, borboletaazulimg, 
 butterflyG;
@@ -63,6 +63,7 @@ function preload(){
 
     //borboleta
     borboletaimgright = loadImage("./borboletas/azul/borboleta-azul-right.png");
+    borboletaimgleft = loadImage("./borboletas/azul/borboleta-azul-left.png");
     borboletaamarelomarromimg = loadImage("./borboletas/borboleta-marromamarelo-frente.png");
     borboletamarromimg = loadImage("./borboletas/borboleta-marrom-frente.png");
     borboletaazulimg = loadImage("./borboletas/borboleta-azul-frente.png");
@@ -95,7 +96,9 @@ function setup(){
     
     //Criando o sprite borboleta
     borboleta = createSprite(width / 2, height / 2 + 50, 25, 25);
-    borboleta.addImage("left", borboletaimgright);
+    borboleta.addImage("right", borboletaimgright);
+    borboleta.addImage("left", borboletaimgleft);
+    borboleta.changeImage("right", borboletaimgright);
     borboleta.visible = false;
     //borboleta.debug = true;
     borboleta.setCollider("rectangle", 0, 0, 135, 550);
@@ -198,6 +201,15 @@ function draw(){
     }
 
     if(level == -4){
+        if(dialogostatus == "Terminado"){
+            if(girl.x > borboleta.x){
+                borboleta.changeImage("right", borboletaimgright);
+            }
+            if(girl.x < borboleta.x){
+                borboleta.changeImage("left", borboletaimgleft);
+            }
+        }
+        
         background(treeandrockbgImg);
         fill("cyan");
         stroke("white");
